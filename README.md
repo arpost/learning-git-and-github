@@ -1,4 +1,4 @@
-# learning-git-and-github
+# Learning Git and GitHub
 
 All of the instructions below assume you have administrator access to your computer.
 
