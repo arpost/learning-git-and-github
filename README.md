@@ -12,7 +12,7 @@ If you don’t have it installed already, Terminal will prompt you to install it
 ## Installing Git on Windows
 Go to https://git-scm.com/download/win and the download will start automatically. For more information, go to https://gitforwindows.org. 
 
-## Install Windows Terminal
+## Installing Windows Terminal
 Go to the Microsoft Store, search for Windows Terminal, and install it. It is free of charge.
 
 ## Installing OpenSSH Client on Windows 10
