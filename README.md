@@ -7,7 +7,7 @@ On Mavericks (10.9) or newer, try to run git from the Terminal:
 
 ```$ git --version```
 
-If you don’t have it installed already, Terminal will prompt you to install it.
+If you don’t have it installed already, Terminal will prompt you to install it. The rest of what you need is installed by default or will be installed along with git.
 
 ## Installing Git on Windows
 Go to https://git-scm.com/download/win and the download will start automatically. For more information, go to https://gitforwindows.org. 
@@ -21,6 +21,36 @@ In an administrator account, go to Settings, and go to Apps & Features. Click on
 ## Activate SSH Agent on Windows 10
 Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type `Start-Service ssh-agent` to start the agent (this will happen automatically after every reboot):
 
-Next, in Terminal, open a PowerShell and run `get-command ssh` to get the path to your ssh command. Then from the search bar, open Edit environment variables for your account and create a `GIT_SSH` variable set to the path to your ssh command. You will need to log out of your account for the setting to take effect.
+Next, in Terminal, open a PowerShell and run `get-command ssh` to get the path to your ssh command. It most likely is `C:\Windows\System32\OpenSSH\ssh.exe`. Then open a Terminal, and run the following command to configure git to use Microsoft's ssh command, substituting `<the git command from above>` with what `get-command ssh` just told you:
 
-## Create a ssh key and add it to GitHub (all platforms)
+```
+git config --global core.sshCommand <the git command from above>
+```
+
+## Create a ssh key (all platforms)
+Run the following in Terminal:
+
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+If your operating system doesn't support the ed25519 encryption algorithm, run this instead:
+
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+The email address just labels the key for your personal reference. When prompted to save your new key, press `<Enter>` to use the default location. When prompted for a passphrase (a password), do not skip this step! Read below for instructions on how to use SSH agent to avoid needing to type your password all the time.
+
+These commands will create two files in your `.ssh` directory located at `$HOME/.ssh` (Mac) or `$Env:USERPROFILE/.ssh` (Windows Powershell): `id_ed25519` and `id_ed25519.pub`, or `id_rsa` and `id_rsa.pub` if you ran the second command. `$HOME` and `$Env:USERPROFILE` refer to `/Users/<username>` on Mac and `C:\Users\<username>` on Windows, respectively, where `<username>` is your account name.
+
+The file ending in `.pub` is your public key and is meant to be copied to servers that you want to access without needing to enter your username and password every time. The other file is your private key and should *never* be shared with anyone.
+
+## Add your public key to GitHub
+Final step! Login to GitHub. Click your avatar in the upper right corner of the window, and select Settings. Then select SSH and GPG keys on the left. Click the New SSH key button. Give the key a name, leave Key type as-is, and copy and paste the contents of your public key file into the text box. You can open the file in a program like Notepad (Windows) or Textedit (Mac). Or you can print its contents in the Terminal with `type id_ed25519.pub` (Windows) or `cat id_ed25519.pub` (Mac).
+
+## Add your public key to SSH Agent
+As promised, if you do this step, you will not have to enter your key's passphrase every time it is used. In Terminal, from your `.ssh` directory run `ssh-add id_ed25519.pub` or `ssh-add id_rsa.pub` depending on which file you generated above. Enter the passphrase when prompted, and you should see an Identity added message.
+
+## Making sure it worked
+To check whether all this worked, in Terminal, run `ssh -T git@github.com`. If all is well, you should see a logged in message without needing to enter the passphrase.
