@@ -19,12 +19,8 @@ Go to the Microsoft Store, search for Windows Terminal, and install it. It is fr
 In an administrator account, go to Settings, and go to Apps & Features. Click on Optional Features. If OpenSSH Client is not listed under Installed Features, click Add a feature and install it. If you don't see the OpenSSH Client listed, you probably are not in an administrator account. 
 
 ## Activate SSH Agent on Windows 10
-Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type the following to start the agent (this will happen automatically after every reboot):
+Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type `Start-Service ssh-agent` to start the agent (this will happen automatically after every reboot):
 
-```
-Start-Service ssh-agent
-```
-
-Next, in Terminal, open a PowerShell and run `get-command ssh` to get the path to your ssh command. Then in the Start menu, open Edit environment variables for your account and create a `GIT_SSH` variable set to the path to your ssh command. You will need to log out of your account for the setting to take effect.
+Next, in Terminal, open a PowerShell and run `get-command ssh` to get the path to your ssh command. Then from the search bar, open Edit environment variables for your account and create a `GIT_SSH` variable set to the path to your ssh command. You will need to log out of your account for the setting to take effect.
 
 ## Create a ssh key and add it to GitHub (all platforms)
