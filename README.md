@@ -107,6 +107,6 @@ So, you've decided to work with a team on a new project. One way to divide up wo
 To create a feature branch, type `git checkout -b <branch_name>`, substituting `<branch_name>` with the name of your branch.
 
 ## Next steps
-This concludes the introduction to git and GitHub. There are lots of tutorials and documentation about git and GitHub online, and there is much more to learn. If you are using a code editor like Visual Studio Code or an integrated development environment like IntelliJ, it will have built in git support that hides all of git's complexity behind menus and windows. Some even have GitHub support, which will make using git even easier. However, after you get started with the basics, it is important to learn what is happening under the hood. You can start with the official git tutorial at https://git-scm.com/docs/gitcore-tutorial.
+This concludes the introduction to git and GitHub. There are lots of tutorials and documentation about git and GitHub online, and there is much more to learn. If you are using a code editor like Visual Studio Code or an integrated development environment like IntelliJ, it will have built in git support that hides all of git's complexity behind menus and windows. Some even have GitHub support, which will make using git even easier. However, after you get started with the basics, it is important to learn what is happening under the hood. One of the better sources of information about git is the Git Book, found at https://git-scm.com/book/en/v2.
 
 Happy coding!
