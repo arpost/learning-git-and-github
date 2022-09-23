@@ -80,6 +80,13 @@ As promised, if you do this step, you will not have to enter your key's passphra
 ## Make sure it worked
 To check whether all this worked, in Terminal, run `ssh -T git@github.com` again. If all is well, you should see the same connection successful message without needing to enter a passphrase.
 
+## Configure git
+Run the following two commands in your Terminal to set your name and your email address. Doing this will ensure that your changes to your project are easily recognizable as coming from you.
+```
+git config --global user.name "<Your name>"
+git config --global user.email "<Your email address>"
+```
+
 ## Create a new repository
 In your GitHub account, click Repositories, and then click the New button. Give your repository a name and description, and select whether you want it to be public or private. Check Add a README file, and then click the Create Repository button at the bottom.
 
