@@ -18,6 +18,8 @@ On Mavericks (10.9) or newer, try to run git from the Terminal:
 
 If you don’t have git already, Terminal will prompt you to install it. The rest of what you need is installed by default or will be installed along with git. You can skip down to Create a ssh key.
 
+If you have an older version of MacOS, you will need to install Xcode from the App Store, launch Xcode, and install the command line tools when prompted.
+
 ## Install Git on Windows
 Go to https://git-scm.com/download/win and the download will start automatically. For more information, go to https://gitforwindows.org. 
 
