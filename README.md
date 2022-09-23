@@ -26,12 +26,12 @@ Go to https://git-scm.com/download/win and the download will start automatically
 ## Install Windows Terminal
 Go to the Microsoft Store, search for Windows Terminal, and install it. It is free of charge from Microsoft. You will probably want to set Terminal's default shell to PowerShell, which is far superior to the regular command prompt. There is also a built in PowerShell app in Windows that you can use, but Terminal is much nicer. For example, Terminal supports normal cut, copy, and paste keyboard shortcuts, not to mention theming.
 
-## Install OpenSSH Client on Windows 10
+## Install OpenSSH Client on Windows
 OpenSSH will give you the ssh command, which git uses behind the scenes to communicate securely with GitHub's servers. MacOS has ssh installed by default.
 
 In an administrator account, go to Settings, and go to Apps & Features. Click on Optional Features. If OpenSSH Client is not listed under Installed Features, click Add a feature and install it. If you don't see the OpenSSH Client listed, you probably are not in an administrator account. 
 
-To make sure this worked, open Terminal, and from Powershell run `get-command ssh`. The response should look something like `C:\Windows\System32\OpenSSH\ssh.exe`. If not, reboot your computer and try again.
+To make sure this worked, in your regular user account, open Terminal, and from Powershell run `get-command ssh`. The response should look something like `C:\Windows\System32\OpenSSH\ssh.exe`. If not, reboot your computer and try again.
 
 ## Configure git to use the correct ssh (Windows)
 Open a Terminal, and run the following command to configure git to use OpenSSH's ssh command, substituting `<the git command from above>` with what `get-command ssh` just told you:
@@ -45,7 +45,7 @@ On MacOS, git works with ssh out of the box.
 ## Create a ssh key (all platforms)
 SSH keys are an alternative to entering a username and password to connect to a server using SSH. They make use of public key cryptography to ensure a secure connection.
 
-Run the following in Terminal to create a key:
+Run the following in Terminal to create a key, substituting your_email@example.com with your own email address:
 
 ```
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -69,10 +69,10 @@ Login to GitHub. Click your avatar in the upper right corner of the window, and 
 ## Make sure everything works so far
 To check whether you are on the right track, in Terminal, run `ssh -T git@github.com`. If all is well, you will be prompted for your key's passphrase, and then you will get a successful connection message.
 
-## Activate SSH Agent on Windows 10
+## Activate SSH Agent on Windows
 If you try using your key to connect to GitHub now, you will be prompted to enter your passphrase every time you connect. SSH Agent will enable you to use your key without needing to enter the passphrase all the time.
 
-Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type `Start-Service ssh-agent` to start the agent. You only have to do this once - ssh-agent will start automatically on boot from now on):
+Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type `Start-Service ssh-agent` to start the agent. You only have to do this once - ssh-agent will start automatically on boot from now on.
 
 ## Add your public key to SSH Agent (all platforms)
 As promised, if you do this step, you will not have to enter your key's passphrase every time it is used. In Terminal, from your `.ssh` directory run `ssh-add id_ed25519.pub` or `ssh-add id_rsa.pub` depending on which file you generated above. Enter the passphrase when prompted, and you should see an Identity added message.
@@ -89,10 +89,12 @@ On your repository's main page, click the Code button, and click the Copy button
 ## Edit your README
 Open the README file in a text editor, and add some text about your project. Save and close it.
 
-## Adding your changes to your repository
+## Add your changes to your repository
 Back in Terminal, `cd` into the repository, and type `git add .` to stage the changes you just made to your README file. Git will do nothing with your changes and additions until you stage them. Warning, the `git add .` command will suck up *any* changes you make to any files in that directory, including any new files that you have added to the directory, so be careful. To help you out, git will list the files it staged so you can check whether any files were staged in error. You can replace `.` with the path to a file if you want to stage a specific file and ignore the rest. After you have confirmed that git staged the correct file(s), place any staged files into the repository by typing `git commit -m "<a message>"`, substituting `<a message>` with a brief description of what you changed.
 
 Now your changes are stored locally on your hard drive. You can continue to stage and commit changes locally. However, you should frequently (ideally daily) share your changes with your team. You do that with the `push` command. Type `git push`, and then refresh your browser to see the changes to your README!
 
 ## Next steps
 This concludes the introduction to git and GitHub. There are lots of tutorials and documentation about git and GitHub online, and there is much more to learn. If you are using a code editor like Visual Studio Code or an integrated development environment like IntelliJ, it will have built in git support that hides all of git's complexity behind menus and windows. Some even have GitHub support, which will make using git even easier. However, after you get started with the basics, it is important to learn what is happening under the hood. You can start with the official git tutorial at https://git-scm.com/docs/gitcore-tutorial.
+
+Happy coding!
