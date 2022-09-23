@@ -2,19 +2,19 @@
 
 These instructions will guide you through installing and configuring a source code version control system called git on your computer, setting up your access to the GitHub code repository at https://github.com, creating a project, and making some changes to it.
 
-Version control systems maintain a history of all changes made to your software development project. The biggest benefit of using one is that you can easily back out changes to your code if you really mess things up (everyone does at some point). They also allow teams of programmers to make changes to the code at the same time and provide support for merging the changes together. Furthermore, modern version control systems support synchronizing changes to your project between multiple copies of it stored on different servers. Git is probably the most popular version control system. GitHub makes it easy to create a remotely hosted copy of a project, free of charge in many cases, and share it with others. As a result, GitHub has become the defacto standard for hosting open source software projects.
+Version control systems maintain a history of all changes made to your software development project. The biggest benefit of using one is that you can easily back out changes to your code if you really mess things up (everyone does at some point). They also allow teams of programmers to make changes to the code at the same time and provide support for merging the changes together. Furthermore, modern version control systems can synchronize changes to your project between multiple copies stored on different servers. Git is probably the most popular version control system, and GitHub wraps git in an easy-to-use website. GitHub makes it easy to create a remotely hosted copy of a project, free of charge in many cases, and share it with others. As a result, GitHub has become the defacto standard for hosting open source software projects.
 
-All of the instructions below assume you have administrator access to your computer. Once you are done, you will be able to access git repositories on GitHub from your computer without ever needing to enter a password!
+All of the instructions below assume you have administrator access to your computer. After you are done, you will be able to access git repositories on GitHub from your computer without ever needing to enter a password!
 
 ## Create a GitHub account
-The first step is to create a GitHub account at https://github.com. You will collaborate with your teammates via this website.
+The first step is to create a GitHub account at https://github.com.
 
 ## Install Git on MacOS
 On Mavericks (10.9) or newer, try to run git from the Terminal:
 
 ```$ git --version```
 
-If you don’t have it already, Terminal will prompt you to install it. The rest of what you need is installed by default or will be installed along with git.
+If you don’t have git already, Terminal will prompt you to install it. The rest of what you need is installed by default or will be installed along with git. You can skip down to Create a ssh key.
 
 ## Install Git on Windows
 Go to https://git-scm.com/download/win and the download will start automatically. For more information, go to https://gitforwindows.org. 
