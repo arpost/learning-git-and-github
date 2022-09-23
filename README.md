@@ -6,7 +6,7 @@ Version control systems maintain a history of all changes made to your software 
 
 All of the instructions below assume you have administrator access to your computer. After you are done, you will be able to access git repositories on GitHub from your computer without ever needing to enter a password!
 
-NOTE: the Windows instructions are for Windows 10. If you have Windows 11, it is likely that the instructions still work with minor modifications, but I don't yet have access to a Windows 11 machine to verify that.
+NOTE: the Windows instructions are for Windows 10. If you have Windows 11, the instructions likely still work with minor modifications, but I don't yet have access to a Windows 11 machine to verify that.
 
 ## Create a GitHub account
 The first step is to create a GitHub account at https://github.com.
