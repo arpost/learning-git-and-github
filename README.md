@@ -6,6 +6,8 @@ Version control systems maintain a history of all changes made to your software 
 
 All of the instructions below assume you have administrator access to your computer. After you are done, you will be able to access git repositories on GitHub from your computer without ever needing to enter a password!
 
+NOTE: the Windows instructions are for Windows 10. If you have Windows 11, it is likely that the instructions still work with minor modifications, but I don't yet have access to a Windows 11 machine to verify that.
+
 ## Create a GitHub account
 The first step is to create a GitHub account at https://github.com.
 
@@ -27,10 +29,10 @@ OpenSSH will give you the ssh command, which git uses behind the scenes to commu
 
 In an administrator account, go to Settings, and go to Apps & Features. Click on Optional Features. If OpenSSH Client is not listed under Installed Features, click Add a feature and install it. If you don't see the OpenSSH Client listed, you probably are not in an administrator account. 
 
-To make sure this worked, open Terminal and from Powershell, run `get-command ssh`. The response should look something like `C:\Windows\System32\OpenSSH\ssh.exe`. If not, reboot your computer and try again.
+To make sure this worked, open Terminal, and from Powershell run `get-command ssh`. The response should look something like `C:\Windows\System32\OpenSSH\ssh.exe`. If not, reboot your computer and try again.
 
 ## Configure git to use the correct ssh (Windows)
-Open a Terminal, and run the following command to configure git to use this ssh command, substituting `<the git command from above>` with what `get-command ssh` just told you:
+Open a Terminal, and run the following command to configure git to use OpenSSH's ssh command, substituting `<the git command from above>` with what `get-command ssh` just told you:
 
 ```
 git config --global core.sshCommand <the git command from above>
@@ -47,15 +49,15 @@ Run the following in Terminal to create a key:
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-If your operating system is too old to support the ed25519 encryption algorithm, run this instead:
+If you get an error about the ed25519 encryption algorithm being unsupported, run this instead:
 
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-The email address just labels the key for your personal reference. When prompted to save your new key, press `<Enter>` to use the default location. When prompted for a passphrase (a password), do not skip this step! Read below for instructions on how to use SSH agent to avoid needing to type your password all the time.
+The email address just labels the key for your personal reference. When prompted to save your new key, press `<Enter>` to use the default location. When prompted for a passphrase (a password), do not skip this step! Read below for instructions on how to use SSH agent to avoid needing to type your passphrase all the time.
 
-These commands will create two files in your `.ssh` directory located at `$HOME/.ssh` (Mac) or `$Env:USERPROFILE/.ssh` (Windows Powershell): `id_ed25519` and `id_ed25519.pub`, or `id_rsa` and `id_rsa.pub` if you ran the second command. `$HOME` and `$Env:USERPROFILE` refer to `/Users/<username>` on Mac and `C:\Users\<username>` on Windows, respectively, where `<username>` is your account name.
+These commands will create two files in your `.ssh` directory located at `$HOME/.ssh` (Mac) or `$Env:USERPROFILE/.ssh` (Windows Powershell): `id_ed25519` and `id_ed25519.pub`, or `id_rsa` and `id_rsa.pub` if you ran the second command. `$HOME` and `$Env:USERPROFILE` are environment variables that refer to `/Users/<username>` on Mac and `C:\Users\<username>` on Windows, respectively, where `<username>` is your account name.
 
 The file ending in `.pub` is your public key and is meant to be copied to servers that you want to access. The other file is your private key and should *never* be shared with anyone.
 
