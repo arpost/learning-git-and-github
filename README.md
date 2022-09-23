@@ -94,6 +94,11 @@ Back in Terminal, `cd` into the repository, and type `git add .` to stage the ch
 
 Now your changes are stored locally on your hard drive. You can continue to stage and commit changes locally. However, you should frequently (ideally daily) share your changes with your team. You do that with the `push` command. Type `git push`, and then refresh your browser to see the changes to your README!
 
+## Making changes to a team project
+So, you've decided to work with a team on a new project. One way to divide up work is for each of you to create a branch for your changes, called a feature branch. You work on your changes, committing and pushing your changes as you go. When your team decides that your changes are ready, you merge them into the main branch, typically called `main`. 
+
+To create a feature branch, type `git checkout -b <branch_name>`, substituting `<branch_name>` with the name of your branch.
+
 ## Next steps
 This concludes the introduction to git and GitHub. There are lots of tutorials and documentation about git and GitHub online, and there is much more to learn. If you are using a code editor like Visual Studio Code or an integrated development environment like IntelliJ, it will have built in git support that hides all of git's complexity behind menus and windows. Some even have GitHub support, which will make using git even easier. However, after you get started with the basics, it is important to learn what is happening under the hood. You can start with the official git tutorial at https://git-scm.com/docs/gitcore-tutorial.
 
