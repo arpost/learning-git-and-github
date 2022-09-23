@@ -1,40 +1,42 @@
 # Learning Git and GitHub
 
-These instructions will guide you through installing and configuring a source code version control system called git on your computer, and setting up your access to the GitHub code repository at https://github.com. 
+These instructions will guide you through installing and configuring a source code version control system called git on your computer, setting up your access to the GitHub code repository at https://github.com, creating a project, and making some changes to it.
+
+Version control systems maintain a history of all changes made to your software development project. The biggest benefit of using one is that you can easily back out changes to your code if you really mess things up (everyone does at some point). They also allow teams of programmers to make changes to the code at the same time and provide support for merging the changes together. Furthermore, modern version control systems support synchronizing changes to your project between multiple copies of it stored on different servers. Git is probably the most popular version control system. GitHub makes it easy to create a remotely hosted copy of a project, free of charge in many cases, and share it with others. As a result, GitHub has become the defacto standard for hosting open source software projects.
 
 All of the instructions below assume you have administrator access to your computer. Once you are done, you will be able to access git repositories on GitHub from your computer without ever needing to enter a password!
 
-## Creating a GitHub account
+## Create a GitHub account
 The first step is to create a GitHub account at https://github.com. You will collaborate with your teammates via this website.
 
-## Installing Git on MacOS
+## Install Git on MacOS
 On Mavericks (10.9) or newer, try to run git from the Terminal:
 
 ```$ git --version```
 
 If you don’t have it already, Terminal will prompt you to install it. The rest of what you need is installed by default or will be installed along with git.
 
-## Installing Git on Windows
+## Install Git on Windows
 Go to https://git-scm.com/download/win and the download will start automatically. For more information, go to https://gitforwindows.org. 
 
-## Installing Windows Terminal
+## Install Windows Terminal
 Go to the Microsoft Store, search for Windows Terminal, and install it. It is free of charge from Microsoft. You will probably want to set Terminal's default shell to PowerShell, which is far superior to the regular command prompt. There is also a built in PowerShell app in Windows that you can use, but Terminal is much nicer. For example, Terminal supports normal cut, copy, and paste keyboard shortcuts, not to mention theming.
 
-## Installing OpenSSH Client on Windows 10
+## Install OpenSSH Client on Windows 10
 OpenSSH will give you the ssh command, which git uses behind the scenes to communicate securely with GitHub's servers. MacOS has ssh installed by default.
 
 In an administrator account, go to Settings, and go to Apps & Features. Click on Optional Features. If OpenSSH Client is not listed under Installed Features, click Add a feature and install it. If you don't see the OpenSSH Client listed, you probably are not in an administrator account. 
 
 To make sure this worked, open Terminal and from Powershell, run `get-command ssh`. The response should look something like `C:\Windows\System32\OpenSSH\ssh.exe`. If not, reboot your computer and try again.
 
-## Configure git to use the correct ssh
+## Configure git to use the correct ssh (Windows)
 Open a Terminal, and run the following command to configure git to use this ssh command, substituting `<the git command from above>` with what `get-command ssh` just told you:
 
 ```
 git config --global core.sshCommand <the git command from above>
 ```
 
-If you are trying this on MacOS, git should work with ssh out of the box.
+On MacOS, git works with ssh out of the box.
 
 ## Create a ssh key (all platforms)
 SSH keys are an alternative to entering a username and password to connect to a server using SSH. They make use of public key cryptography to ensure a secure connection.
@@ -60,6 +62,9 @@ The file ending in `.pub` is your public key and is meant to be copied to server
 ## Add your public key to GitHub (all platforms)
 Login to GitHub. Click your avatar in the upper right corner of the window, and select Settings. Then select SSH and GPG keys on the left. Click the New SSH key button. Give the key a name (any name will do), leave Key type as-is, and copy and paste the contents of your public key file into the text box. You can open the file in a program like Notepad or TextEdit. Or you can print its contents in the Terminal with `type id_ed25519.pub` (Windows) or `cat id_ed25519.pub` (Mac).
 
+## Make sure everything works so far
+To check whether you are on the right track, in Terminal, run `ssh -T git@github.com`. If all is well, you will be prompted for your key's passphrase, and then you will get a successful connection message.
+
 ## Activate SSH Agent on Windows 10
 If you try using your key to connect to GitHub now, you will be prompted to enter your passphrase every time you connect. SSH Agent will enable you to use your key without needing to enter the passphrase all the time.
 
@@ -68,5 +73,22 @@ Open Services as an administrator (from any user account, search for Services in
 ## Add your public key to SSH Agent (all platforms)
 As promised, if you do this step, you will not have to enter your key's passphrase every time it is used. In Terminal, from your `.ssh` directory run `ssh-add id_ed25519.pub` or `ssh-add id_rsa.pub` depending on which file you generated above. Enter the passphrase when prompted, and you should see an Identity added message.
 
-## Making sure it worked
-To check whether all this worked, in Terminal, run `ssh -T git@github.com`. If all is well, you should see a logged in message without needing to enter the passphrase.
+## Make sure it worked
+To check whether all this worked, in Terminal, run `ssh -T git@github.com` again. If all is well, you should see the same connection successful message without needing to enter a passphrase.
+
+## Create a new repository
+In your GitHub account, click Repositories, and then click the New button. Give your repository a name and description, and select whether you want it to be public or private. Check Add a README file, and then click the Create Repository button at the bottom.
+
+## Copy your repository on to your computer
+On your repository's main page, click the Code button, and click the Copy button to the right of the string starting with `git@github.com...`. In your Terminal, cd to a directory in which to put your repository, and type `git clone <repository url>`, substituting `<repository url>` with the string you just copied. Your repository, containing the README file, will now appear on your computer.
+
+## Edit your README
+Open the README file in a text editor, and add some text about your project. Save and close it.
+
+## Adding your changes to your repository
+Back in Terminal, `cd` into the repository, and type `git add .` to stage the changes you just made to your README file. Git will do nothing with your changes and additions until you stage them. Warning, the `git add .` command will suck up *any* changes you make to any files in that directory, including any new files that you have added to the directory, so be careful. To help you out, git will list the files it staged so you can check whether any files were staged in error. You can replace `.` with the path to a file if you want to stage a specific file and ignore the rest. After you have confirmed that git staged the correct file(s), place any staged files into the repository by typing `git commit -m "<a message>"`, substituting `<a message>` with a brief description of what you changed.
+
+Now your changes are stored locally on your hard drive. You can continue to stage and commit changes locally. However, you should frequently (ideally daily) share your changes with your team. You do that with the `push` command. Type `git push`, and then refresh your browser to see the changes to your README!
+
+## Next steps
+This concludes the introduction to git and GitHub. There are lots of tutorials and documentation about git and GitHub online, and there is much more to learn. If you are using a code editor like Visual Studio Code or an integrated development environment like IntelliJ, it will have built in git support that hides all of git's complexity behind menus and windows. Some even have GitHub support, which will make using git even easier. However, after you get started with the basics, it is important to learn what is happening under the hood. You can start with the official git tutorial at https://git-scm.com/docs/gitcore-tutorial.
