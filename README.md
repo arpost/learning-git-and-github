@@ -75,7 +75,7 @@ If you try using your key to connect to GitHub now, you will be prompted to ente
 Open Services as an administrator (from any user account, search for Services in the search bar and look for Run as administrator). Scroll down to OpenSSH Authentication Agent > right click > Properties. Change the Startup type from Disabled to Automatic. Then open PowerShell as an administrator the same way, and type `Start-Service ssh-agent` to start the agent. You only have to do this once - ssh-agent will start automatically on boot from now on.
 
 ## Add your public key to SSH Agent (all platforms)
-As promised, if you do this step, you will not have to enter your key's passphrase every time it is used. In Terminal, from your `.ssh` directory run `ssh-add id_ed25519` or `ssh-add id_rsa` depending on which file you generated above. Enter the passphrase when prompted, and you should see an Identity added message.
+As promised, if you do this step, you will not have to enter your key's passphrase every time it is used. In Terminal, from your `.ssh` directory run `ssh-add id_ed25519` or `ssh-add id_rsa` depending on which file you generated above. Enter the passphrase when prompted, and you should see an Identity added message. On macOS, you can also use `ssh-add --apple-use-keychain <private key filename>` to use Apple's Keychain feature. You can check if it worked by opening Keychain Access and searching for a password called `'SSH: <private key filename>'`.
 
 ## Make sure it worked
 To check whether all this worked, in Terminal, run `ssh -T git@github.com` again. If all is well, you should see the same connection successful message without needing to enter a passphrase.
