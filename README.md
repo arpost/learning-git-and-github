@@ -43,7 +43,7 @@ To make sure this worked, in your regular user account, open Terminal, and from 
 Open a Terminal, and run the following command to configure Git to use OpenSSH's `ssh` command, substituting `<the git command from above>` with what `get-command ssh` just told you:
 
 ```
-git config --global core.sshCommand <the git command from above>
+git config --global core.sshCommand "'<the git command from above>'"
 ```
 
 On macOS, Git works with `ssh` out of the box.
